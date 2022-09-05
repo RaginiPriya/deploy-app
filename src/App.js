@@ -1,23 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
+import { CreateNotification } from './CreateNotification';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './NavBar';
+import { Route, BrowserRouter as Router, 
+  Routes 
+  // Switch
+}   from 'react-router-dom';
+import Subscriptions from './Subscriptions';
+import HalfScreen from './HalfScreen';
+import Notifications from './Notifications';
+import { NotificationHook } from './NotificationHook';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+
+      
+      <Router>
+      <NavBar></NavBar>
+      {/* <HalfScreen></HalfScreen> */}
+        <Routes>
+            <Route element={<Subscriptions/>} path='/' />
+            {/* <Route element={<Notifications/>} path='/notifications'></Route> */}
+            <Route element={<NotificationHook/>} path='/notifications'></Route>
+            <Route element={<CreateNotification/>} path='/notification'></Route>
+        </Routes>
+        {/* <Switch>
+            <Route component={Subscriptions} path='/' />
+            <Route component={Notifications} path='/notifications'></Route>
+            <Route component={CreateNotification} path='/notification'></Route>
+        </Switch> */}
+      </Router>
     </div>
   );
 }
